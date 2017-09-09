@@ -1,0 +1,9 @@
+@import '../../common/colors.css';
+
+.exchange-page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: var(--white);
+    text-shadow: 0 1px 5px var(--shadow150);
+}

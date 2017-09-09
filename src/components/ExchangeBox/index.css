@@ -1,0 +1,71 @@
+@import '../../common/colors.css';
+
+.exchange-box {
+	flex: 1 1 50%;
+	padding: 36px;
+	position: relative;
+}
+
+.exchange-box__container {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.exchange-box_type_from {
+	background-color: var(--blue500);
+	background-image: linear-gradient(to bottom, var(--blue500), var(--blue400));
+}
+
+.exchange-box_type_from:after {
+	border-color: var(--blue400) transparent transparent;
+	border-style: solid;
+	border-width: 22px 20px 0;
+	content: '';
+	left: 50%;
+	margin-left: -20px;
+	margin-top: -2px;
+	position: absolute;
+	top: 100%;
+	z-index: 1;
+}
+
+.exchange-box_type_to {
+	background-color: var(--blue700);
+	background-image: linear-gradient(to bottom, var(--blue700), var(--blue600));
+}
+
+.exchange-box__row {
+	align-content: flex-start;
+	align-items: flex-start;
+	box-sizing: border-box;
+	display: flex;
+	font-weight: normal;
+	justify-content: space-between;
+	margin: 0 0 16px;
+	white-space: nowrap;
+}
+
+.exchange-box__row_size_xxl {
+	font-size: 36px;
+}
+
+.exchange-box__row_theme_grey {
+	color: var(--grey500);
+}
+
+.exchange-box__key {
+}
+
+.exchange-box__value {
+	flex: 1 1 100%;
+	margin: 0;
+	text-align: right;
+}
+
+.exchange-box__currency {
+	text-transform: uppercase;
+}
+
+.exchange-box__amount {
+}

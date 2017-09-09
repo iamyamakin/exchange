@@ -1,0 +1,14 @@
+:root {
+    /* Basic */
+    --black: #000;
+    --white: #FFF;
+
+    --grey500: #CCC;
+
+    --blue400: #3F84F6;
+    --blue500: #2369D5;
+    --blue600: #356BCA;
+    --blue700: #3365C3;
+
+    --shadow150: rgba(0, 0, 0, 0.15);
+}

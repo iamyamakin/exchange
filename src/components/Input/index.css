@@ -1,0 +1,84 @@
+@import '../../common/colors.css';
+
+.input {
+    display: inline-block;
+    position: relative;
+}
+
+.input_state_focused {
+}
+
+.input_state_focused .input__placeholder {
+    display: none;
+}
+
+
+.input_state_invalid {
+}
+
+.input_state_disabled {
+    opacity: 0.65;
+}
+
+.input_state_hidden {
+    display: none;
+}
+
+.input_has_value {
+}
+
+.input_has_value .input__placeholder {
+    display: none;
+}
+
+.input_width_full {
+    width: 100%;
+}
+
+.input_align_left {
+    text-align: left;
+}
+
+.input_align_right {
+    text-align: right;
+}
+
+.input__box {
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+
+.input__placeholder {
+    position: absolute;
+}
+
+.input_align_left .input__placeholder {
+    left: 0;
+}
+
+.input_align_right .input__placeholder {
+    right: 0;
+}
+
+.input__control {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    appearance: none;
+    background: transparent;
+    border: 0;
+    box-sizing: border-box;
+    color: inherit;
+    display: block;
+    flex: 1 1 auto;
+    font: inherit;
+    height: auto;
+    line-height: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    position: relative;
+    text-align: inherit;
+    text-indent: 0;
+    text-transform: inherit;
+    width: 100%;
+}

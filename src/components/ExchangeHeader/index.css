@@ -1,0 +1,12 @@
+@import '../../common/colors.css';
+
+.exchange-header {
+    align-content: flex-start;
+    align-items: center;
+    background-color: var(--blue500);
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+

@@ -1,0 +1,17 @@
+@import '../../common/colors.css';
+@import-normalize;
+
+.root-html,
+.root-body,
+#root-container,
+.root {
+    height: 100%;
+}
+
+.root-body {
+    font-family: Arial, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    margin: 0;
+    height: 100%;
+}
