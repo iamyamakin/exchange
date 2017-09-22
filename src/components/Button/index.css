@@ -1,0 +1,27 @@
+@import '../../common/colors.css';
+
+.button {
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    box-sizing: border-box;
+    color: var(--white);
+    cursor: pointer;
+    display: inline-block;
+    font: inherit;
+    margin: 0;
+    max-width: 100%;
+    outline: 0;
+    padding: 4px 8px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.button_state_disabled {
+    opacity: 0.5;
+}

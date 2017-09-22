@@ -3,7 +3,9 @@ import {
     FETCH_WALLETS,
     FETCH_WALLETS_SUCCESS,
     FETCH_WALLETS_FAILURE,
-    RESET_WALLETS
+    RESET_WALLETS,
+    UPDATE_WALLETS,
+    UPDATE_WALLETS_SUCCESS
 } from './constants';
 
 const initialState = Map({
@@ -32,6 +34,12 @@ const walletsReducer = (state = initialState, action) => {
         }
         case RESET_WALLETS: {
             return initialState;
+        }
+        case UPDATE_WALLETS: {
+            return state;
+        }
+        case UPDATE_WALLETS_SUCCESS: {
+            return state.set('data', action.data);
         }
         default: {
             return state;

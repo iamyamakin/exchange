@@ -2,7 +2,9 @@ import {
     FETCH_WALLETS,
     FETCH_WALLETS_SUCCESS,
     FETCH_WALLETS_FAILURE,
-    RESET_WALLETS
+    RESET_WALLETS,
+    UPDATE_WALLETS,
+    UPDATE_WALLETS_SUCCESS
 } from './constants';
 
 export const fetchWallets = (data) => {
@@ -32,3 +34,16 @@ export const resetWallets = () => {
     };
 };
 
+export const updateWallets = (data) => {
+    return {
+        type: UPDATE_WALLETS,
+        data
+    };
+};
+
+export const updateWalletsSuccess = (data) => {
+    return {
+        type: UPDATE_WALLETS_SUCCESS,
+        data
+    };
+};

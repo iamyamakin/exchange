@@ -3,9 +3,13 @@ import {
     FETCH_EXCHANGE_RATES,
     FETCH_EXCHANGE_RATES_SUCCESS,
     FETCH_EXCHANGE_RATES_FAILURE,
-    RESET_EXCHANGE_RATES,
-    CHANGE_EXCHANGE_FROM_AMOUNT,
-    CHANGE_EXCHANGE_TO_AMOUNT,
+    RESET_EXCHANGE,
+    CHANGE_EXCHANGE_FROM,
+    CHANGE_EXCHANGE_FROM_SUCCESS,
+    CHANGE_EXCHANGE_TO,
+    CHANGE_EXCHANGE_TO_SUCCESS,
+    CHANGE_WALLET,
+    CHANGE_WALLET_SUCCESS,
     BASE_CURRENCY
 } from './constants';
 
@@ -14,12 +18,12 @@ const initialState = Map({
         baseCurrency: BASE_CURRENCY,
         rates: Map(),
         from: Map({
-            currency: 'USD',
-            amount: '0'
+            currency: BASE_CURRENCY,
+            amount: 0
         }),
         to: Map({
-            currency: 'USD',
-            amount: '0'
+            currency: BASE_CURRENCY,
+            amount: 0
         })
     }),
     error: '',
@@ -47,14 +51,30 @@ const exchangeReducer = (state = initialState, action) => {
                 .set('error', action.error)
                 .set('isLoading', false);
         }
-        case RESET_EXCHANGE_RATES: {
-            return initialState;
+        case RESET_EXCHANGE: {
+            return state
+                .setIn(['data', 'from', 'amount'], 0)
+                .setIn(['data', 'to', 'amount'], 0);
         }
-        case CHANGE_EXCHANGE_FROM_AMOUNT: {
-            return state.setIn(['data', 'from', 'amount'], action.amount);
+        case CHANGE_EXCHANGE_FROM: {
+            return state.setIn(['data', 'from'], action.data);
         }
-        case CHANGE_EXCHANGE_TO_AMOUNT: {
-            return state.setIn(['data', 'to', 'amount'], action.amount);
+        case CHANGE_EXCHANGE_FROM_SUCCESS: {
+            return state.setIn(['data', 'to'], action.data);
+        }
+        case CHANGE_EXCHANGE_TO: {
+            return state.setIn(['data', 'to'], action.data);
+        }
+        case CHANGE_EXCHANGE_TO_SUCCESS: {
+            return state.setIn(['data', 'from'], action.data);
+        }
+        case CHANGE_WALLET: {
+            return state;
+        }
+        case CHANGE_WALLET_SUCCESS: {
+            const data = action.data;
+
+            return state.setIn(['data', data.get('type'), 'currency'], data.get('currency'));
         }
         default: {
             return state;

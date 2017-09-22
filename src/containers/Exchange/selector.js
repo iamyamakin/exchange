@@ -31,3 +31,15 @@ export const getExchangeFrom = (state) => {
 export const getExchangeTo = (state) => {
     return getExchangeData(state).get('to');
 };
+
+export const isEqualCurrencies = (state) => {
+    return getExchangeFrom(state).get('currency') === getExchangeTo(state).get('currency');
+};
+
+export const hasAmount = (state) => {
+    return Boolean(getExchangeFrom(state).get('amount'));
+};
+
+export const hasOverflow = (state, walletAmount) => {
+    return getExchangeFrom(state).get('amount') > walletAmount;
+};

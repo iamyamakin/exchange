@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { Map } from 'immutable';
 import classNames from 'classnames';
+import Button from './../Button';
 import Input from './../Input';
 import './index.css';
 
-const ExchangeBox = ({ className, type, currency = 'USD', amount = '0', inWallet = '0', meta, onChange }) => {
+const ExchangeBox = ({ className, type, currency, amount, wallets, inWallet, meta, onChange, changeWallet }) => {
     const computedClassName = classNames(
         'exchange-box',
         {
@@ -13,15 +16,15 @@ const ExchangeBox = ({ className, type, currency = 'USD', amount = '0', inWallet
         className
     );
     const inputOptions = {};
-    const inputPattern = /^[-+]?(\d{0,4}|\d{0,4}\.\d{0,2})$/;
+    const inputPattern = /^[-+]?(\d+|\d+\.\d{0,2})$/;
 
-    if (amount === '0') {
-        inputOptions['placeholder'] = '0';
-        inputOptions['value'] = '';
-    } else {
-        inputOptions['placeholder'] = '';
-        inputOptions['value'] = amount;
-    }
+    const _changeWalletTo = (direction) => {
+        changeWallet(Map({
+            direction,
+            currency,
+            type
+        }));
+    };
 
     return (
         <article className={computedClassName}>
@@ -30,7 +33,8 @@ const ExchangeBox = ({ className, type, currency = 'USD', amount = '0', inWallet
                     <dt className="exchange-box__key exchange-box__currency">{currency}</dt>
                     <dd className="exchange-box__value exchange-box__amount">
                         <Input type="text" onChange={onChange} align="right" pattern={inputPattern} width="full"
-                            {...inputOptions}
+                            placeholder={0}
+                            value={amount ? amount : undefined}
                         />
                     </dd>
                 </dl>
@@ -41,17 +45,23 @@ const ExchangeBox = ({ className, type, currency = 'USD', amount = '0', inWallet
                         : null}
                 </dl>
             </div>
+            <div className="exchange-box__actions">
+                <Button onClick={_changeWalletTo.bind(null, 'previous')}>Prev</Button>
+                <Button onClick={_changeWalletTo.bind(null, 'next')}>Next</Button>
+            </div>
         </article>
     );
 };
 
 ExchangeBox.propTypes = {
     className: PropTypes.string,
-    type: PropTypes.oneOf(['from', 'to']),
-    currency: PropTypes.string,
-    amount: PropTypes.string,
-    inWallet: PropTypes.string,
-    meta: PropTypes.string
+    type: PropTypes.oneOf(['from', 'to']).isRequired,
+    currency: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+    wallets: ImmutablePropTypes.list.isRequired,
+    inWallet: PropTypes.number.isRequired,
+    meta: PropTypes.string,
+    changeWallet: PropTypes.func
 };
 
 export default ExchangeBox;

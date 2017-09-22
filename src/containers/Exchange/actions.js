@@ -2,9 +2,13 @@ import {
     FETCH_EXCHANGE_RATES,
     FETCH_EXCHANGE_RATES_SUCCESS,
     FETCH_EXCHANGE_RATES_FAILURE,
-    RESET_EXCHANGE_RATES,
-    CHANGE_EXCHANGE_FROM_AMOUNT,
-    CHANGE_EXCHANGE_TO_AMOUNT
+    RESET_EXCHANGE,
+    CHANGE_EXCHANGE_FROM,
+    CHANGE_EXCHANGE_FROM_SUCCESS,
+    CHANGE_EXCHANGE_TO,
+    CHANGE_EXCHANGE_TO_SUCCESS,
+    CHANGE_WALLET,
+    CHANGE_WALLET_SUCCESS
 } from './constants';
 
 export const fetchExchangeRates = (data) => {
@@ -28,23 +32,50 @@ export const fetchExchangeRatesFailure = (error) => {
     };
 };
 
-export const resetExchangeRates = () => {
+export const resetExchange = () => {
     return {
-        type: RESET_EXCHANGE_RATES
+        type: RESET_EXCHANGE
     };
 };
 
-export const changeExchangeFromAmount = (amount) => {
+export const changeExchangeFrom = (data) => {
     return {
-        type: CHANGE_EXCHANGE_FROM_AMOUNT,
-        amount
+        type: CHANGE_EXCHANGE_FROM,
+        data
     };
 };
 
-export const changeExchangeToAmount = (amount) => {
+export const changeExchangeFromSuccess = (data) => {
     return {
-        type: CHANGE_EXCHANGE_TO_AMOUNT,
-        amount
+        type: CHANGE_EXCHANGE_FROM_SUCCESS,
+        data
     };
 };
 
+export const changeExchangeTo = (data) => {
+    return {
+        type: CHANGE_EXCHANGE_TO,
+        data
+    };
+};
+
+export const changeExchangeToSuccess = (data) => {
+    return {
+        type: CHANGE_EXCHANGE_TO_SUCCESS,
+        data
+    };
+};
+
+export const changeWallet = (data) => {
+    return {
+        type: CHANGE_WALLET,
+        data
+    };
+};
+
+export const changeWalletSuccess = (data) => {
+    return {
+        type: CHANGE_WALLET_SUCCESS,
+        data
+    };
+};

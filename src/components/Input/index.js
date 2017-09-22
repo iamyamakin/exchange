@@ -27,6 +27,10 @@ class Input extends Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        this._setValueToState(nextProps.value);
+    }
+
     componentDidMount() {
         this.state.data.get('focused') ? this._focus() : this._blur();
     }
@@ -36,15 +40,16 @@ class Input extends Component {
     }
 
     _validate(value) {
+        let stringValue = String(value);
         let minLength = this.props.minLength;
         let maxLength = this.props.maxLength;
-        let inBoundaries = value.length >= minLength && value.length <= maxLength;
+        let inBoundaries = stringValue.length >= minLength && stringValue.length <= maxLength;
         let isValid = false;
 
-        if (value.length === 0) {
+        if (stringValue.length === 0) {
             isValid = true;
         } else if (inBoundaries) {
-            isValid = this.props.pattern.test(value);
+            isValid = this.props.pattern.test(stringValue);
         }
 
         return isValid;
@@ -93,20 +98,24 @@ class Input extends Component {
             if (value.length === 0) {
                 this._debounceOnChange.cancel();
             }
-            if (this._validate(value)) {
-                this.setState(
-                    ({ data: oldData }) => {
-                        return {
-                            data: oldData
-                                .set('value', value)
-                                .set('hasValue', Boolean(value))
-                        };
-                    },
-                    () => {
-                        this._debounceOnChange(this.state.data.get('value'));
-                    }
-                );
-            }
+            this._setValueToState(value, () => {
+                this._debounceOnChange(this.state.data.get('value'));
+            });
+        }
+    }
+
+    _setValueToState(value, callback) {
+        if (this._validate(value)) {
+            this.setState(
+                ({ data: oldData }) => {
+                    return {
+                        data: oldData
+                            .set('value', value)
+                            .set('hasValue', Boolean(value))
+                    };
+                },
+                callback
+            );
         }
     }
 
@@ -176,7 +185,7 @@ Input.propTypes = {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     pattern: PropTypes.any,
-    placeholder: PropTypes.string,
+    placeholder: PropTypes.any,
     type: PropTypes.oneOf(['text']),
     value: PropTypes.any,
     width: PropTypes.oneOf(['full'])

@@ -2,7 +2,7 @@
     "wallets": [
         {
             "currency": "GBP",
-            "amount": 100
+            "amount": 50
         },
         {
             "currency": "EUR",
@@ -10,7 +10,7 @@
         },
         {
             "currency": "USD",
-            "amount": 100
+            "amount": 150
         }
     ]
 }
